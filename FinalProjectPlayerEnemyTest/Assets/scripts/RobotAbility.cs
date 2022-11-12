@@ -25,7 +25,7 @@ public class RobotAbility : MonoBehaviour
         {
             
             anim.SetBool("autoAttack", true);
-            attack();
+            StartCoroutine(attack());
         }
         else anim.SetBool("autoAttack", false);
 
