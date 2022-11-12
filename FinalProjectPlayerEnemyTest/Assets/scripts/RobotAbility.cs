@@ -23,7 +23,6 @@ public class RobotAbility : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            
             anim.SetBool("autoAttack", true);
             StartCoroutine(attack());
         }
