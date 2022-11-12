@@ -11,7 +11,7 @@ public class Healthbar : MonoBehaviour
     private void Update()
     {
         healthbar.fillAmount = (100 - RobotState.playerhealth) / 100;
-        transform.position = player_t.position + new Vector3(0, 4, 0);
+        transform.position = player_t.position + new Vector3(0, 2, 0);
         transform.rotation = player_t.rotation;
         Quaternion rotationAmount = Quaternion.Euler(0, 90, 0);
         Quaternion postRotation = player_t.rotation * rotationAmount;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lasereye : MonoBehaviour
 {
     public GameObject laserPrefab;
-    public float laserSpeed = 5f;
+    public float laserSpeed = 50f;
 
     private void Update()
     {

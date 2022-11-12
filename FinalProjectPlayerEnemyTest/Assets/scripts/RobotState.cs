@@ -17,8 +17,23 @@ public class RobotState : MonoBehaviour
             playerhealth = 100;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Damage") playerhealth -= 10;
+        if (collision.gameObject.tag == "Damage")
+        {
+            Debug.Log("Hurt!");
+            playerhealth -= 10;
+        }
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("triggerEnter");
+        if (other.tag == "Damage")
+        {
+            Debug.Log("Hurt!");
+            playerhealth -= 10;
+        }
     }
+
 }

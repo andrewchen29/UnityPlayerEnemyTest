@@ -45,7 +45,6 @@ public class RobotController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
-            Debug.Log("jump");
             robot_rb.AddForce(jumpHeight * Vector3.up, ForceMode.VelocityChange);
             isGrounded = false;
         }
@@ -53,7 +52,6 @@ public class RobotController : MonoBehaviour
 
         if (move != Vector3.zero)
         {
-            Debug.Log("GO!");
             robot_rb.velocity = move + new Vector3(0, robot_rb.velocity.y, 0);
             anim.SetBool("isRunning", true);
             robot_rb.transform.right = robot_rb.velocity - new Vector3(0, robot_rb.velocity.y, 0);
