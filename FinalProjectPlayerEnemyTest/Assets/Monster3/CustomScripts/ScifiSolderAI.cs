@@ -74,7 +74,7 @@ public class ScifiSolderAI : MonoBehaviour
         }
         agent.SetDestination(walkPoint);
         if (GetComponent<MonsterHealth>().IsDeath())
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 0.5f);
     }
     void Patrolling()
     {
@@ -138,6 +138,7 @@ public class ScifiSolderAI : MonoBehaviour
             GetComponent<MonsterHealth>().TakeDamage(1);
             GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
             GetComponent<HurtEffect>().Spawn();
+            GetComponentInChildren<AudioSource>().Play();
         }
     }
 
