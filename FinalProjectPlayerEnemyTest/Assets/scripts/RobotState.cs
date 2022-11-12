@@ -33,6 +33,8 @@ public class RobotState : MonoBehaviour
         {
             Debug.Log("Hurt!");
             playerhealth -= 10;
+            GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+            GetComponent<HurtEffect>().Spawn();
         }
     }
 

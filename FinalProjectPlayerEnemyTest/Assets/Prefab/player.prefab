@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51318602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.99, z: 0}
+  m_LocalPosition: {x: 0, y: 2.1, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 297275183250074505, guid: 188cbf7e7e8c7ce46a6e7718c5f5b1b3, type: 3}
-  laserSpeed: 5
+  laserSpeed: 50
+  anim: {fileID: 1388814066557327001}
 --- !u!1 &29706669616028433
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +800,7 @@ GameObject:
   - component: {fileID: 1649137045265550661}
   - component: {fileID: 7723362952651265782}
   - component: {fileID: 7723362952651265789}
+  - component: {fileID: 7723362952651265795}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -815,7 +817,7 @@ Transform:
   m_GameObject: {fileID: 5446915802772359664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.99, z: -10.425054}
-  m_LocalScale: {x: -0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1995028760874977566}
@@ -975,6 +977,20 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &7723362952651265795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446915802772359664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0542ea9e5f55868458ecb05e71a6c032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
+  effect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
 --- !u!1 &5991708907637614293
 GameObject:
   m_ObjectHideFlags: 0

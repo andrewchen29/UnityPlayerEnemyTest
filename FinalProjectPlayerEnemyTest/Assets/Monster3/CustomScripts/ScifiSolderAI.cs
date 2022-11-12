@@ -36,6 +36,7 @@ public class ScifiSolderAI : MonoBehaviour
         controller = GetComponent<PlayerController>();
         state = ScifiSolderState.Patrolling;
         front = new Vector3(0.0f, 0.0f, 1.0f);
+        GetComponent<MonsterHealth>().SetHealth(2);
     }
 
     // Update is called once per frame
@@ -72,6 +73,8 @@ public class ScifiSolderAI : MonoBehaviour
                 break;    
         }
         agent.SetDestination(walkPoint);
+        if (GetComponent<MonsterHealth>().IsDeath())
+            Destroy(this.gameObject);
     }
     void Patrolling()
     {
@@ -126,4 +129,16 @@ public class ScifiSolderAI : MonoBehaviour
         newBullet.transform.position = controller.GetRightGunPosition();
         newBullet.GetComponent<Bullet>().Direction = (playerTransform.position - newBullet.transform.position).normalized;
     }
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PlayerDamage")
+        {
+            GetComponent<MonsterHealth>().TakeDamage(1);
+            GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+            GetComponent<HurtEffect>().Spawn();
+        }
+    }
+
 }

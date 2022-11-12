@@ -40,7 +40,7 @@ public class Enemy2AI : MonoBehaviour
         walkPointRangeZ = 1.0f;
         SetWalkPoint();
         state = EnemyState.Patrolling;
-    
+        GetComponent<MonsterHealth>().SetHealth(2);
     }
 
     // Update is called once per frame
@@ -85,6 +85,8 @@ public class Enemy2AI : MonoBehaviour
         }
         
         agent.SetDestination(walkPoint);
+        if (GetComponent<MonsterHealth>().IsDeath())
+            Destroy(this.gameObject);
     }
 
     void Patrolling()
@@ -131,4 +133,16 @@ public class Enemy2AI : MonoBehaviour
             animate.Attack();
         }
     }
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PlayerDamage")
+        {
+            GetComponent<MonsterHealth>().TakeDamage(2);
+            GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+            GetComponent<HurtEffect>().Spawn();
+        }
+    }
+
 }

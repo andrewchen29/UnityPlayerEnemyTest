@@ -169,7 +169,11 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerDamage")
-            GetComponent<MonsterHealth>().TakeDamage(2);
+        {
+            GetComponent<MonsterHealth>().TakeDamage(1);
+            GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+            GetComponent<HurtEffect>().Spawn();
+        }
     }
 
 }
