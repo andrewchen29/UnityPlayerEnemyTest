@@ -166,9 +166,9 @@ public class Monster : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "PlayerDamage")
+        if (other.tag == "PlayerDamage")
             GetComponent<MonsterHealth>().TakeDamage(2);
     }
 

@@ -7,14 +7,15 @@ public class RobotAbility : MonoBehaviour
     public Transform target;
     public Transform player_t;
     public float autoAttackRange = 0.2f;
-    private bool hitEnemy;
-    private LayerMask whatEnemy;
     public Animator anim;
+    public GameObject head_g;
+    private CapsuleCollider head;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // head = GameObject.Find("Bone002").GetComponent<CapsuleCollider>();
+        head = head_g.GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -22,13 +23,19 @@ public class RobotAbility : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 playerRealT = player_t.position + new Vector3(0f, 2f, 0f);
-            hitEnemy = Physics.Raycast(playerRealT, target.position - playerRealT, autoAttackRange, whatEnemy);
-            Debug.DrawRay(playerRealT, target.position - playerRealT, Color.blue, autoAttackRange);
+            
             anim.SetBool("autoAttack", true);
+            attack();
         }
         else anim.SetBool("autoAttack", false);
 
+    }
+
+    IEnumerator attack()
+    {
+        head.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        head.enabled = false;
     }
 
 }
