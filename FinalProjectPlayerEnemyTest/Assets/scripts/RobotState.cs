@@ -28,10 +28,9 @@ public class RobotState : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("triggerEnter");
         if (other.tag == "Damage")
         {
-            Debug.Log("Hurt!");
+            // Debug.Log("Hurt!");
             playerhealth -= 10;
             GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
             GetComponent<HurtEffect>().Spawn();

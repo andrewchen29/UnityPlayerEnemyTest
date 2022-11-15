@@ -12,6 +12,8 @@ public class Enemy2AI : MonoBehaviour
     public float playerAttackRange = 1.0f;
     public float attackPeriod = 0.5f;
     public Transform playerTransform;
+    public int MaxHealth = 2;
+    public GameObject HealthBar;
 
     private bool setWalkPoint = false;
     private Vector3 walkPoint;
@@ -40,7 +42,12 @@ public class Enemy2AI : MonoBehaviour
         walkPointRangeZ = 1.0f;
         SetWalkPoint();
         state = EnemyState.Patrolling;
-        GetComponent<MonsterHealth>().SetHealth(2);
+        GetComponent<MonsterHealth>().SetHealth(MaxHealth);
+        var hb = Instantiate(HealthBar);
+        hb.transform.SetParent(this.transform);
+        GetComponentInChildren<MonsterHealthbar>().playerTransform = playerTransform;
+        GetComponentInChildren<MonsterHealthbar>().monsterTransform = this.transform;
+        GetComponentInChildren<MonsterHealthbar>().SetMaxHealth(MaxHealth);
     }
 
     // Update is called once per frame
@@ -87,6 +94,8 @@ public class Enemy2AI : MonoBehaviour
         agent.SetDestination(walkPoint);
         if (GetComponent<MonsterHealth>().IsDeath())
             Destroy(this.gameObject, 0.5f);
+        var h = GetComponent<MonsterHealth>().GetHealth();
+        GetComponentInChildren<MonsterHealthbar>().SetHealth(h);
     }
 
     void Patrolling()
@@ -139,8 +148,8 @@ public class Enemy2AI : MonoBehaviour
     {
         if (other.tag == "PlayerDamage")
         {
-            GetComponent<MonsterHealth>().TakeDamage(2);
-            GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+            GetComponent<MonsterHealth>().TakeDamage(1);
+            GetComponent<HurtEffect>().position = transform.position + new Vector3(0.0f, 3.0f, 0.0f);
             GetComponent<HurtEffect>().Spawn();
             GetComponentInChildren<AudioSource>().Play();
         }

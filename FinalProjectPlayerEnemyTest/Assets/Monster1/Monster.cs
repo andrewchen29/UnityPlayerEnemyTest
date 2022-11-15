@@ -17,6 +17,8 @@ public class Monster : MonoBehaviour
     public Transform playerTransform;
     public float playerDetectRange = 8.0f;
     public float playerAttackRange = 1.0f;
+    public int MaxHealth = 2;
+    public GameObject HealthBar;
 
     private float walkPointRangeX;
     private float walkPointRangeZ;
@@ -51,7 +53,13 @@ public class Monster : MonoBehaviour
         walkPointRangeZ = 1.0f;
         SetWalkPoint();
         state = EnemyState.Patrolling;
-        GetComponent<MonsterHealth>().SetHealth(1);
+        GetComponent<MonsterHealth>().SetHealth(MaxHealth);
+        var hb = Instantiate(HealthBar);
+        // hb.transform.parent = this.transform;
+        hb.transform.SetParent(this.transform);
+        GetComponentInChildren<MonsterHealthbar>().playerTransform = playerTransform;
+        GetComponentInChildren<MonsterHealthbar>().monsterTransform = this.transform;
+        GetComponentInChildren<MonsterHealthbar>().SetMaxHealth(MaxHealth);
     }
 
     // Update is called once per frame
@@ -74,6 +82,8 @@ public class Monster : MonoBehaviour
         navMeshAgent.SetDestination(walkPoint);
         if (GetComponent<MonsterHealth>().IsDeath())
             Destroy(this.gameObject, 0.5f);
+        var h = GetComponent<MonsterHealth>().GetHealth();
+        GetComponentInChildren<MonsterHealthbar>().SetHealth(h);
     }
 
     void Animate()

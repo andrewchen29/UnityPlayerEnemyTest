@@ -21,4 +21,9 @@ public class MonsterHealth : MonoBehaviour
     {
         return health <= 0;
     }
+
+    public int GetHealth()
+    {
+        return health;
+    }
 }
